@@ -305,3 +305,7 @@
     color: black;
   }
   
+  heart {
+    background: red;
+    width: 10px;
+  }

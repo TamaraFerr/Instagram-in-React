@@ -1,52 +1,79 @@
-
+import { useState } from "react"
 
 
 export default function Posts() {
-    return(
-        <ul class="posts">
-            <PostItem userprofile="assets/img/meowed.svg" username="meowed" image="assets/img/gato-telefone.svg" usersimage="assets/img/respondeai.svg" text1 ="respondeai" number="101.523"/>
-            <PostItem userprofile="assets/img/barked.svg" username="barked" image="assets/img/dog.svg" usersimage="assets/img/adorable_animals.svg" text1 ="adorable_animals" number="99.159"/>
+  const [save, setSave] = useState("bookmark-outline")
+
+  function SavePost() {
+    if(save === "bookmark-outline") {
+      setSave("bookmark")
+    } else {
+      setSave("bookmark-outline")
+    }
+    console.log("você clicou aqui!")
+  } 
+
+  const [like, setLike] = useState("heart-outline")
+
+  function LikePost() {
+    if(like === "heart-outline") {
+      setLike("heart")
+    } else {
+      setLike("heart-outline")
+    }
+    console.log("você clicou aqui!")
+  }
+
+  
+  return(
+    <ul class="posts">
+      <ul class="post" data-test="post">
+        <li class="topo">
+          <PostUser userprofile="assets/img/meowed.svg" username="meowed"/>
+          <div class="acoes">
+            <ion-icon name="ellipsis-horizontal"></ion-icon>
+          </div>
+        </li>
+        <li class="conteudo">
+          <img src="assets/img/gato-telefone.svg" alt="" data-test="post-image" onClick={LikePost}/>
+        </li>
+        <ul class="fundo">
+          <li class="acoes">
+            <div>
+              <ion-icon name={like} style={{color: like === "heart-outline" ? "black" : "red"}} data-test="like-post" onClick={LikePost}></ion-icon>
+              <ion-icon name="chatbubble-outline"></ion-icon>
+              <ion-icon name="paper-plane-outline"></ion-icon>
+            </div>
+            <div>
+              <ion-icon name={save} data-test="save-post" onClick={SavePost}></ion-icon>
+            </div>
+          </li>
+
+          <PostLikes usersimage="assets/img/respondeai.svg" text1 ="respondeai" number="101.523"/>
+          
         </ul>
-    )
+      </ul>
+    </ul>
+  )
 }
 
 
-function PostItem(props) {
+function PostUser(props) {
   return (
-    <div class="post" data-test="post">
-      <div class="topo">
-        <div class="usuario">
-          <img src={props.userprofile} alt=""/>
-          {props.username}
-        </div>
-        <div class="acoes">
-          <ion-icon name="ellipsis-horizontal"></ion-icon>
-        </div>
-      </div>
-
-      <div class="conteudo">
-        <img src={props.image} alt="" data-test="post-image"/>
-      </div>
-
-      <div class="fundo">
-        <div class="acoes">
-          <div>
-            <ion-icon name="heart-outline" data-test="like-post"></ion-icon>
-            <ion-icon name="chatbubble-outline"></ion-icon>
-            <ion-icon name="paper-plane-outline"></ion-icon>
-          </div>
-          <div>
-            <ion-icon name="bookmark-outline" data-test="save-post"></ion-icon>
-          </div>
-        </div>
-
-        <div class="curtidas">
-          <img src={props.usersimage} alt=""/>
-          <div class="texto">
-            Curtido por <strong>{props.text1}</strong> e <strong data-test="likes-number">outras {props.number} pessoas"</strong>
-          </div>
-        </div>
-      </div>
+    <div class="usuario">
+      <img src={props.userprofile} alt=""/>
+      {props.username}
     </div>
+  )
+}
+
+function PostLikes(props) {
+  return (
+    <li class="curtidas">
+      <img src={props.usersimage} alt=""/>
+      <div class="texto">
+        Curtido por <strong>{props.text1}</strong> e <strong data-test="likes-number">outras {props.number} pessoas"</strong>
+      </div>
+    </li>
   )
 }
