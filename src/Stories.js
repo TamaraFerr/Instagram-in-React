@@ -1,83 +1,29 @@
-
-
 export default function Stories() {
     return (
-        <div className="stories">
-            <div className="story">
-              <div className="imagem">
-                <img src="assets/img/9gag.svg" alt="9gag"/>
-              </div>
-              <div className="usuario">
-                9gag
-              </div>
-            </div>
+        <ul className="stories">
+            <StoriesItem imagem="assets/img/9gag.svg" texto="9gag" />
+            <StoriesItem imagem="assets/img/meowed.svg" texto="meowed"/>
+            <StoriesItem imagem="assets/img/barked.svg"  texto="barked"/>
+            <StoriesItem imagem="assets/img/nathanwpylestrangeplanet.svg"  texto="nathanwpylestrangeplanet"/>
+            <StoriesItem imagem="assets/img/wawawicomics.svg"  texto="wawawicomics"/>
+            <StoriesItem imagem="assets/img/respondeai.svg"  texto="respondeai"/>
+            <StoriesItem imagem="assets/img/filomoderna.svg"  texto="filomoderna"/>
+            <StoriesItem imagem="assets/img/memeriagourmet.svg"  texto="memeriagourmet"/>
   
-            <div className="story">
-              <div className="imagem">
-                <img src="assets/img/meowed.svg" alt="meowed"/>
-              </div>
-              <div className="usuario">
-                meowed
-              </div>
-            </div>
-  
-            <div className="story">
-              <div className="imagem">
-                <img src="assets/img/barked.svg" alt="barked"/>
-              </div>
-              <div className="usuario">
-                barked
-              </div>
-            </div>
-  
-            <div className="story">
-              <div className="imagem">
-                <img src="assets/img/nathanwpylestrangeplanet.svg" alt="nathanwpylestrangeplanet"/>
-              </div>
-              <div className="usuario">
-                nathanwpylestrangeplanet
-              </div>
-            </div>
-  
-            <div className="story">
-              <div className="imagem">
-                <img src="assets/img/wawawicomics.svg" alt="wawawicomics"/>
-              </div>
-              <div className="usuario">
-                wawawicomics
-              </div>
-            </div>
-  
-            <div className="story">
-              <div className="imagem">
-                <img src="assets/img/respondeai.svg" alt="respondeai"/>
-              </div>
-              <div className="usuario">
-                respondeai
-              </div>
-            </div>
-  
-            <div className="story">
-              <div className="imagem">
-                <img src="assets/img/filomoderna.svg" alt="filomoderna"/>
-              </div>
-              <div className="usuario">
-                filomoderna
-              </div>
-            </div>
-  
-            <div className="story">
-              <div className="imagem">
-                <img src="assets/img/memeriagourmet.svg" alt="memeriagourmet"/>
-              </div>
-              <div className="usuario">
-                memeriagourmet
-              </div>
-            </div>
-  
-            <div className="setinha">
+            <li className="setinha">
               <ion-icon name="chevron-forward-circle"></ion-icon>
-            </div>
-        </div>
+            </li>
+        </ul>
     )
+}
+
+function StoriesItem(props) {
+  return (
+    <ul className="story">
+      <li className="imagem">
+        <img src={props.imagem} alt="9gag"/>
+      </li>
+      <li className="usuario">{props.texto}</li>
+    </ul>
+  )
 }

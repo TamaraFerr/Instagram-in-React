@@ -1,91 +1,75 @@
+import { useState } from "react"
+
 export default function Suggestions() {
+  const [fotoDoUsuario, setFotoDoUsuario] = useState("assets/img/catanacomics.svg")
+  const [nomeUsuario, setNomeUsuario] = useState("catanacomics")
+
+  function TrocaFoto() {
+    let novaFoto = prompt('Insira o link da nova foto!')
+    if(!novaFoto) {
+      novaFoto = fotoDoUsuario
+    } else {
+      setFotoDoUsuario(novaFoto)
+    }
+}
+  function TrocaNome() {
+    let novoUsuario = prompt('Insira o novo nome!')
+    if(!novoUsuario) {
+      novoUsuario = nomeUsuario
+    } else {
+      setNomeUsuario(novoUsuario)
+    }
+  }
+
     return(
-        <div class="sidebar">
-          <div class="usuario">
-            <img src="assets/img/catanacomics.svg" alt="imagem de perfil"/>
-            <div class="texto">
+        <ul class="sidebar">
+          <ul class="usuario">
+            <img src={fotoDoUsuario} alt="imagem de perfil" data-test="profile-image" onClick={TrocaFoto}/>
+           <li class="texto">
               <span>
-                <strong>catanacomics</strong>
-                <ion-icon name="pencil"></ion-icon>
+                <strong data-test="name" id="nome-atual">{nomeUsuario}</strong>
+                <ion-icon name="pencil" data-test="edit-name" onClick={TrocaNome}></ion-icon>
               </span>
-            </div>
-          </div>
-  
-          <div class="sugestoes">
-            <div class="titulo">
+            </li>
+          </ul>
+
+          <ul class="sugestoes">
+            <li class="titulo">
               Sugestões para você
               <div>Ver tudo</div>
-            </div>
+            </li>
   
-            <div class="sugestao">
-              <div class="usuario">
-                <img src="assets/img/bad.vibes.memes.svg" alt="bad.vibes.memes.svg"/>
-                <div class="texto">
-                  <div class="nome">bad.vibes.memes</div>
-                  <div class="razao">Segue você</div>
-                </div>
-              </div>
+            <SidebarItem imagem= "assets/img/bad.vibes.memes.svg"nome="bad.vibes.memes" texto="Segue você" seguir="Seguir"/>
+            <SidebarItem imagem="assets/img/chibirdart.svg" nome="chibirdart" texto="Segue você" seguir="Seguir"/>
+            <SidebarItem imagem="assets/img/razoesparaacreditar.svg" nome="razoesparaacreditar" texto="Novo no Instagram" seguir="Seguir"/>
+            <SidebarItem imagem="assets/img/adorable_animals.svg" nome="adorable_animals" texto="Segue você" seguir="Seguir"/>
+            <SidebarItem imagem="assets/img/smallcutecats.svg" nome="smallcutecats" texto="Segue você" seguir="Seguir"/>
   
-              <div class="seguir">Seguir</div>
-            </div>
-  
-            <div class="sugestao">
-              <div class="usuario">
-                <img src="assets/img/chibirdart.svg" alt="chibirdart"/>
-                <div class="texto">
-                  <div class="nome">chibirdart</div>
-                  <div class="razao">Segue você</div>
-                </div>
-              </div>
-  
-              <div class="seguir">Seguir</div>
-            </div>
-  
-            <div class="sugestao">
-              <div class="usuario">
-                <img src="assets/img/razoesparaacreditar.svg" alt="razoesparaacreditar" />
-                <div class="texto">
-                  <div class="nome">razoesparaacreditar</div>
-                  <div class="razao">Novo no Instagram</div>
-                </div>
-              </div>
-  
-              <div class="seguir">Seguir</div>
-            </div>
-  
-            <div class="sugestao">
-              <div class="usuario">
-                <img src="assets/img/adorable_animals.svg" alt="adorable_animals"/>
-                <div class="texto">
-                  <div class="nome">adorable_animals</div>
-                  <div class="razao">Segue você</div>
-                </div>
-              </div>
-  
-              <div class="seguir">Seguir</div>
-            </div>
-  
-            <div class="sugestao">
-              <div class="usuario">
-                <img src="assets/img/smallcutecats.svg" alt="smallcutecats"/>
-                <div class="texto">
-                  <div class="nome">smallcutecats</div>
-                  <div class="razao">Segue você</div>
-                </div>
-              </div>
-  
-              <div class="seguir">Seguir</div>
-            </div>
-          </div>
-  
-          <div class="links">
+           <li class="links">
             Sobre • Ajuda • Imprensa • API • Carreiras • Privacidade • Termos • Localizações • Contas mais relevantes •
             Hashtags • Idioma
-          </div>
+           </li>
   
-          <div class="copyright">
+           <li class="copyright">
             © 2021 INSTAGRAM DO FACEBOOK
-          </div>
-        </div>
+           </li>
+          </ul>
+        </ul>
     )
+}
+
+function SidebarItem(props) {
+  return (
+    <ul className="sugestao">
+      <li className="usuario">
+        <img src={props.imagem} alt="bad.vibes.memes.svg"/>
+        <ul className="texto">
+          <li className="nome">{props.nome}</li>
+          <li className="razao">{props.texto}</li>
+        </ul>
+      </li>
+
+      <li className="seguir">{props.seguir}</li>
+    </ul>
+  )
 }
