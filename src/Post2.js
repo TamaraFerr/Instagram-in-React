@@ -3,6 +3,8 @@ import { useState } from "react"
 export default function Post2() {
     const [save, setSave] = useState("bookmark-outline")
     const [like, setLike] = useState("heart-outline")
+    const [likes, setLikes] = useState(99159)
+    const formatNumber = (number) => new Intl.NumberFormat("pt-BR").format(number) 
   
     function SavePost() {
         if(save === "bookmark-outline" ) {
@@ -15,11 +17,17 @@ export default function Post2() {
     function LikePost() {
       if(like === "heart-outline") {
             setLike("heart")
+            setLikes(likes + 1)
         } else {
             setLike("heart-outline")
+            setLikes(likes - 1)
         }
     }
-  
+
+    function LikeFoto() {
+        setLike("heart")
+        setLikes(likes + 1)
+    }
     
     return(
         <ul class="posts">
@@ -31,21 +39,21 @@ export default function Post2() {
                     </div>
                 </li>
                 <li class="conteudo">
-                    <img src="assets/img/dog.svg" alt="" data-test="post-image" onClick={LikePost} id="foto-1"/>
+                    <img src="assets/img/dog.svg" alt="" data-test="post-image" onClick={LikeFoto} />
                 </li>
                 <ul class="fundo">
                     <li class="acoes">
                     <div>
-                    <ion-icon name={like} style={{color: like === "heart-outline" ? "black" : "red"}} data-test="like-post" onClick={LikePost} id="like-2"></ion-icon>
+                    <ion-icon name={like} style={{color: like === "heart-outline" ? "black" : "red"}} data-test="like-post" onClick={LikePost} ></ion-icon>
                     <ion-icon name="chatbubble-outline"></ion-icon>
                     <ion-icon name="paper-plane-outline"></ion-icon>
                     </div>
                     <div>
-                        <ion-icon name={save} data-test="save-post" onClick={SavePost} id="save-2"></ion-icon>
+                        <ion-icon name={save} data-test="save-post" onClick={SavePost}></ion-icon>
                     </div>
                     </li>
 
-                    <PostLikes usersimage="assets/img/adorable_animals.svg" text1 ="adorable_animals" number="99.159"/>
+                    <PostLikes usersimage="assets/img/adorable_animals.svg" text1 ="adorable_animals" number={formatNumber(likes)}/>
             
                 </ul>
             </ul>

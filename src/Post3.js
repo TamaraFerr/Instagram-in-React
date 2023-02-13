@@ -4,6 +4,8 @@ import { useState } from "react"
 export default function Post3() {
     const [save, setSave] = useState("bookmark-outline")
     const [like, setLike] = useState("heart")
+    const [likes, setLikes] = useState(101523)
+    const formatNumber = (number) => new Intl.NumberFormat("pt-BR").format(number) 
 
     function SavePost() {
         if(save === "bookmark-outline" ) {
@@ -14,11 +16,18 @@ export default function Post3() {
     } 
 
     function LikePost() {
-        if(like === "heart") {
-            setLike("heart-outline")
-        } else {
+        if(like === "heart-outline") {
             setLike("heart")
+            setLikes(likes + 1)
+        } else {
+            setLike("heart-outline")
+            setLikes(likes - 1)
         }
+    }
+
+    function LikeFoto() {
+        setLike("heart")
+        setLikes(likes + 1)
     }
 
   
@@ -32,7 +41,7 @@ export default function Post3() {
                 </div>
             </li>
             <li class="conteudo">
-                <img src="assets/img/gato-telefone.svg" alt="" data-test="post-image" onClick={LikePost} />
+                <img src="assets/img/gato-telefone.svg" alt="" data-test="post-image" onClick={LikeFoto} />
             </li>
             <ul class="fundo">
                 <li class="acoes">
@@ -46,7 +55,7 @@ export default function Post3() {
                     </div>
                 </li>
 
-                <PostLikes usersimage="assets/img/respondeai.svg" text1 ="respondeai" number="101.523"/>
+                <PostLikes usersimage="assets/img/respondeai.svg" text1 ="respondeai" number={formatNumber(likes)}/>
           
             </ul>
         </ul>
