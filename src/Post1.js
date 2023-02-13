@@ -1,19 +1,17 @@
 import { useState } from "react"
 
 
-export default function Posts() {
+export default function Post1() {
   const [save, setSave] = useState("bookmark-outline")
+  const [like, setLike] = useState("heart-outline")
 
   function SavePost() {
-    if(save === "bookmark-outline") {
+    if(save === "bookmark-outline" ) {
       setSave("bookmark")
     } else {
       setSave("bookmark-outline")
     }
-    console.log("você clicou aqui!")
   } 
-
-  const [like, setLike] = useState("heart-outline")
 
   function LikePost() {
     if(like === "heart-outline") {
@@ -21,7 +19,6 @@ export default function Posts() {
     } else {
       setLike("heart-outline")
     }
-    console.log("você clicou aqui!")
   }
 
   
@@ -35,7 +32,7 @@ export default function Posts() {
           </div>
         </li>
         <li class="conteudo">
-          <img src="assets/img/gato-telefone.svg" alt="" data-test="post-image" onClick={LikePost}/>
+          <img src="assets/img/gato-telefone.svg" alt="" data-test="post-image" onClick={LikePost} />
         </li>
         <ul class="fundo">
           <li class="acoes">
@@ -45,7 +42,7 @@ export default function Posts() {
               <ion-icon name="paper-plane-outline"></ion-icon>
             </div>
             <div>
-              <ion-icon name={save} data-test="save-post" onClick={SavePost}></ion-icon>
+              <ion-icon name={save} data-test="save-post" onClick={SavePost} ></ion-icon>
             </div>
           </li>
 

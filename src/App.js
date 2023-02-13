@@ -1,4 +1,5 @@
-import Posts from "./Posts";
+import Post1 from "./Post1";
+import Post2 from "./Post2";
 import Stories from "./Stories";
 import Sidebar from "./Sidebar";
 import Navbar from "./Navbar";
@@ -10,7 +11,8 @@ export default function App() {
                 <Navbar />
                 <div class="esquerda">
                     <Stories />
-                    <Posts />
+                    <Post1 />
+                    <Post2 />
                 </div>
                 <Sidebar />      
             </div> 
