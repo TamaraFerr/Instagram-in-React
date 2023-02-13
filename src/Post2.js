@@ -26,7 +26,7 @@ export default function Post2() {
 
     function LikeFoto() {
         setLike("heart")
-        setLikes(likes + 1)
+        setLikes(likes)
     }
     
     return(

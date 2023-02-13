@@ -31,7 +31,7 @@ export default function Post1() {
       setLike("heart")
       setLikes(likes + 1)
     } else {
-      setLikes(likes - 1)
+      setLikes(likes)
     }
   }
   
